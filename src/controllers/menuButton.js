@@ -1,3 +1,10 @@
+/*
+ * @Author: qiye
+ * @LastEditors: qiye
+ * @description: page description
+ * @Date: 2023-08-01 21:36:09
+ * @LastEditTime: 2023-08-01 23:27:07
+ */
 import { selectionCopyShow, selectIsOverlap } from "./select";
 import { luckyColor, iconfontObjects } from "./constant";
 import luckysheetConfigsetting from "./luckysheetConfigsetting";
@@ -3612,22 +3619,7 @@ const menuButton = {
                         value: "print",
                         example: '<i class="iconfont luckysheet-iconfont-dayin" aria-hidden="true"></i>',
                     },
-                    { text: "", value: "split", example: "" },
-                    {
-                        text: locale_print.menuItemAreas,
-                        value: "areas",
-                        example: '<i class="iconfont luckysheet-iconfont-tihuan" aria-hidden="true"></i>',
-                    },
-                    {
-                        text: locale_print.menuItemRows,
-                        value: "rows",
-                        example: '<i class="iconfont luckysheet-iconfont-zhuandao1" aria-hidden="true"></i>',
-                    },
-                    {
-                        text: locale_print.menuItemColumns,
-                        value: "columns",
-                        example: '<i class="iconfont luckysheet-iconfont-dingwei" aria-hidden="true"></i>',
-                    },
+                   
                 ];
 
                 let itemset = _this.createButtonMenu(itemdata);
@@ -3649,9 +3641,8 @@ const menuButton = {
                         if (Store.luckysheetPrint) {
                             luckysheetPrint = Store.luckysheetPrint;
                             const plugin = Store.plugins.find((item) => item.name === "print");
-                            if (plugin && plugin.config) {
-                                luckysheetPrint.createDialog();
-                                luckysheetPrint.init(plugin.config.license);
+                            if (plugin) {
+                                luckysheetPrint.trigger(plugin);
                             }
                         }
                     } else if (itemvalue == "areas" || itemvalue == "rows" || itemvalue == "columns") {
